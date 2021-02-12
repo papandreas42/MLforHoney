@@ -15,7 +15,7 @@ coeffs_title = "coefficients wt=db4levels=6.mat";
 coeffs_path=strcat(coeff_folder_path, coeffs_title);
 
 load(strcat(coeffs_path))
-dist_params = fit_distribution(coeffs, save_folder_path, 'tLocationScale', wavelet, levels);
+dist_params = fit_distribution(coeffs, save_folder_path, 'Normal', wavelet, levels);
 
 
 function dist_params = fit_distribution(coeffs, save_folder_path, distribution, wavelet, levels)
@@ -28,7 +28,6 @@ function dist_params = fit_distribution(coeffs, save_folder_path, distribution, 
             else
                 dist_params{instance,1}{1, level} = [];
                 for orientation = 1:3
-                    a=[level orientation]
                     dist = fitdist( coeffs{instance,1}{1, level}(orientation,:).', distribution);
                     dist_params{instance,1}{1, level}(orientation,:) = dist.ParameterValues(:).';
 
