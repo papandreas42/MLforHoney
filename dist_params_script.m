@@ -9,9 +9,16 @@
 %     end
 % end
 
-%fit_distribution(coeffs, 'Stable', wavelet, levels)
+coeff_folder_path = "D:\Work and uni\University\ML for food authentication\Results_fitting\coefficients\";
+save_folder_path = "D:\Work and uni\University\ML for food authentication\Results_fitting\dist_params\";
+coeffs_title = "coefficients wt=db4levels=5.mat";
+coeffs_path=strcat(coeff_folder_path, coeffs_title);
 
-function fit_distribution(coeffs, distribution, wavelet, levels)
+load(strcat(coeffs_path))
+dist_params = fit_distribution(coeffs, save_folder_path, 'Normal', wavelet, levels);
+
+
+function dist_params = fit_distribution(coeffs, save_folder_path, distribution, wavelet, levels)
     dist_params = coeffs;
     for instance = 1:size(coeffs, 1)
         for level = 1:size(coeffs{instance,1}, 2)
@@ -21,7 +28,6 @@ function fit_distribution(coeffs, distribution, wavelet, levels)
             else
                 dist_params{instance,1}{1, level} = [];
                 for orientation = 1:3
-                    a = size(dist.ParameterValues(:))
                     dist = fitdist( coeffs{instance,1}{1, level}(orientation,:).', distribution);
                     dist_params{instance,1}{1, level}(orientation,:) = dist.ParameterValues(:);
 
@@ -29,5 +35,5 @@ function fit_distribution(coeffs, distribution, wavelet, levels)
             end
         end
     end
-    save(strcat("dist_params wt=", wavelet, " levels=", int2str(levels), " dist=", distribution), "dist_params", "distribution", "levels", "wavelet")
+    save(strcat(save_folder_path, "dist_params wt=", wavelet, " levels=", int2str(levels), " dist=", distribution), "dist_params", "distribution", "levels", "wavelet")
 end

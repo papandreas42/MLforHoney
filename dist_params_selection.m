@@ -1,20 +1,23 @@
 %selection convention [level orientation] (matlab style: 1,2,3)
 %[0 0] = aproximation
-
-load("coefficients wt=db4levels=5.mat")
+coeff_folder_path = "D:\Work and uni\University\ML for food authentication\Results_fitting\coefficients\";
+save_folder_path = "D:\Work and uni\University\ML for food authentication\Results_fitting\dist_paramsSelect\";
+coeffs_title = "coefficients wt=db4levels=5.mat";
+coeffs_path=strcat(coeff_folder_path, coeffs_title);
 selection = [5 1;
              4 3;
              4 2;
              3 2;
              0 0
              ];
-distribution = 'Normal';
-dist_params=fit_distribution_selection(coeffs, distribution, wavelet, levels, selection);
+distribution = 'Stable';
+dist_params=fit_distribution_selection(coeffs_path, save_folder_path, distribution, wavelet, levels, selection);
 
 
 
 
-function dist_params = fit_distribution_selection(coeffs, distribution, wavelet, levels, selection)
+function dist_params = fit_distribution_selection(coeffs_path, save_folder_path, distribution, wavelet, levels, selection)
+    load(coeffs_path);
     dist_params = coeffs;
     for instance = 1:size(coeffs, 1)
         for level = 1:size(coeffs{instance,1}, 2)
@@ -35,5 +38,5 @@ function dist_params = fit_distribution_selection(coeffs, distribution, wavelet,
             end
         end
     end
-    save(strcat("dist_paramsSelect wt=", wavelet, " levels=", int2str(levels), " dist=", distribution), "dist_params", "distribution", "levels", "wavelet", "selection")
+    save(strcat(save_folder_path, "dist_paramsSelect wt=", wavelet, " levels=", int2str(levels), " dist=", distribution), "dist_params", "distribution", "levels", "wavelet", "selection")
 end
