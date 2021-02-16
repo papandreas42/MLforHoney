@@ -2,21 +2,28 @@
 %[0 0] = aproximation
 coeff_folder_path = "D:\Work and uni\University\ML for food authentication\Results_fitting\coefficients\";
 save_folder_path = "D:\Work and uni\University\ML for food authentication\Results_fitting\dist_paramsSelect\";
-coeffs_title = "coefficients wt=db4levels=5.mat";
+coeffs_title = "coefficients wt=db4levels=3.mat";
 coeffs_path=strcat(coeff_folder_path, coeffs_title);
-selection = [5 1;
-             5 2;
-             5 3;
+selection = [1 1;
+             1 2;
+             1 3;
              
-             0 0;
+             2 1;
+             2 2;
+             2 3;
+             
+             3 1;
+             3 2;
+             3 3;
              ];
-distribution = 'Stable';
-dist_params=fit_distribution_selection(coeffs_path, save_folder_path, distribution, wavelet, levels, selection);
+         
+distribution = 'tLocationScale';
+dist_params=fit_distribution_selection(coeffs_path, save_folder_path, distribution, selection);
 
 
 
 
-function dist_params = fit_distribution_selection(coeffs_path, save_folder_path, distribution, wavelet, levels, selection)
+function dist_params = fit_distribution_selection(coeffs_path, save_folder_path, distribution, selection)
     load(coeffs_path);
     dist_params = coeffs;
     for instance = 1:size(coeffs, 1)
@@ -31,7 +38,7 @@ function dist_params = fit_distribution_selection(coeffs_path, save_folder_path,
                 for orientation = 1:3
                     [is_selected, Loc] = ismember([levels-level+2 orientation],selection,'rows');
                     if is_selected 
-                        a=[level orientation]
+                        a=[levels-level+2 orientation]
                         dist = fitdist( coeffs{instance,1}{1, level}(orientation,:).', distribution);
                         dist_params{instance,1}{1, level}(orientation,:) = dist.ParameterValues(:).';
                     end
