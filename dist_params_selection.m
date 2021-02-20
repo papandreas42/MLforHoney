@@ -17,7 +17,7 @@ selection = [1 1;
              3 3;
              ];
          
-distribution = 'tLocationScale';
+distribution = 'Normal';
 dist_params=fit_distribution_selection(coeffs_path, save_folder_path, distribution, selection);
 
 
