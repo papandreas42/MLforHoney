@@ -9,13 +9,13 @@
 %     end
 % end
 
-coeff_folder_path = "D:\Work and uni\University\ML for food authentication\Results_fitting\coefficients\";
-save_folder_path = "D:\Work and uni\University\ML for food authentication\Results_fitting\dist_params\";
-coeffs_title = "coefficients wt=db4levels=6.mat";
+coeff_folder_path = "E:\Backups\Work&Uni\University\ML for food authentication\Results_fitting\coefficients\First Images\";
+save_folder_path = "E:\Backups\Work&Uni\University\ML for food authentication\Results_fitting\dist_paramsSelect\";
+coeffs_title = "coefficients wt=db4levels=3.mat";
 coeffs_path=strcat(coeff_folder_path, coeffs_title);
 
 load(strcat(coeffs_path))
-dist_params = fit_distribution(coeffs, save_folder_path, 'tLocationScale', wavelet, levels);
+dist_params = fit_distribution(coeffs, save_folder_path, 'Normal', wavelet, levels);
 
 
 function dist_params = fit_distribution(coeffs, save_folder_path, distribution, wavelet, levels)
