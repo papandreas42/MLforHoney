@@ -17,7 +17,7 @@ selection = [1 1;
              3 3;
              ];
          
-distribution = 'Stable';
+distribution = 'tLocationScale';
 dist_params = fit_distribution_selection_hdf5(coeffs_path, save_folder_path, distribution, selection);
 
 
