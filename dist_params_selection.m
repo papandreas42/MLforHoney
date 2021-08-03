@@ -1,7 +1,7 @@
-%selection convention [level orientation] (matlab style: 1,2,3)
+%selection convention [level orientation(as in pywt function return)] (matlab style: 1,2,3)
 %[0 0] = aproximation
-coeff_folder_path = "E:\Backups\Work&Uni\University\ML for food authentication\Results_fitting\coefficients\New Images\";
-save_folder_path = "E:\Backups\Work&Uni\University\ML for food authentication\Results_fitting\dist_paramsSelect\New Images\";
+coeff_folder_path = "E:\Backups\Work&Uni\University\ML for food authentication\Results_fitting\coefficients\New Images v2 (3 classes of 100)\";
+save_folder_path = "E:\Backups\Work&Uni\University\ML for food authentication\Results_fitting\dist_paramsSelect\New Images v2 (3 classes of 100)\";
 coeffs_title = "coefficients wt=db4levels=3_hdf5.mat";
 coeffs_path=strcat(coeff_folder_path, coeffs_title);
 selection = [1 1;
