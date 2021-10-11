@@ -2,5 +2,5 @@
 *.tif
 *.jpg
 
-ML_for_food_authentication_thesis.pdf
-.ipynb_checkpoints
+ML_for_food_authentication_thesis.pdf*
+.ipynb_checkpoints*
